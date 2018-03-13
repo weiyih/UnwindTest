@@ -12,31 +12,68 @@ class ThreeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Three VC - Load")
+        print("Three - Load")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        print("Three VC - Will Appear")
+        print("Three - Will Appear")
     }
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        print("Three VC - Did Appear")
+        print("Three - Did Appear")
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
-        print("Three VC - Will Disappear")
+        print("Three - Will Disappear")
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
-        print("Three VC - Did Disappear")
+        print("Three - Did Disappear")
     }
-    
+
+    @IBAction func dismissThree(_ sender: Any) {
+        print("Dismissing Three")
+        
+        //Avoid using presentingViewController as if any ancestor was presented modally, value == nil.
+        //presentedViewController == nil; changes when view presents something.
+
+//        var isModal: Bool {
+//            return presentingViewController != nil ||
+//                navigationController?.presentingViewController?.presentedViewController === navigationController ||
+//                tabBarController?.presentingViewController is UITabBarController
+//        }
+//
+        print(navigationController)
+        print(navigationController?.presentingViewController?.presentedViewController)
+        print(presentingViewController?.presentedViewController)
+        print(presentingViewController)
+        
+        //Checks if view is presented modally. navigationController == nil if view is modally presented
+        var isModal: Bool {
+            return navigationController == nil
+        }
+        print(isModal)
+        if (isModal) {
+            print("Dismissing modal view")
+            self.dismiss(animated: true, completion: nil)
+
+        } else {
+            print("Dismissing pushed view")
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    @IBAction func unwindThree(_ sender: Any) {
+        print("Unwinding...")
+        self.performSegue(withIdentifier: "unwindCode", sender: self)
+        //unwind(for: UIStoryboardSegue("unwindCode"), towardsViewController: ViewController)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 
     /*
     // MARK: - Navigation

@@ -8,34 +8,45 @@
 
 import UIKit
 
-class SecondVC: UIViewController {
+class SecondVC: UIViewController, UINavigationBarDelegate {
 
+    @IBAction func modalPush(_ sender: Any) {
+        print("Second - Modal push")
+        performSegue(withIdentifier: "push", sender: sender)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Second VC - Load")
+        print("Second - Load")
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print("Second VC - Will Appear")
+        print("Second - Will Appear")
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        print("Second VC - Did Appear")
+        print("Second - Did Appear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("Second VC - Will Disappear")
+        print("Second - Will Disappear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("Second VC - Did Disappear")
+        print("Second - Did Disappear")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-
+    @IBAction func dismissTwo(_ sender: Any) {
+        print("Dismissing Two")
+        self.navigationController?.popViewController(animated: true)
+        
+        //self.dismiss(animated: true, completion: { print("Dismissed...") })
+    }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
