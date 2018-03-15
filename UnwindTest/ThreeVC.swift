@@ -32,7 +32,7 @@ class ThreeVC: UIViewController {
     }
 
     @IBAction func dismissThree(_ sender: Any) {
-        print("Dismissing Three")
+        print("\nDismissing Three")
         
         //Avoid using presentingViewController as if any ancestor was presented modally, value == nil.
         //presentedViewController == nil; changes when view presents something.
@@ -43,10 +43,6 @@ class ThreeVC: UIViewController {
 //                tabBarController?.presentingViewController is UITabBarController
 //        }
 //
-        print(navigationController)
-        print(navigationController?.presentingViewController?.presentedViewController)
-        print(presentingViewController?.presentedViewController)
-        print(presentingViewController)
         
         //Checks if view is presented modally. navigationController == nil if view is modally presented
         var isModal: Bool {
@@ -54,17 +50,17 @@ class ThreeVC: UIViewController {
         }
         print(isModal)
         if (isModal) {
-            print("Dismissing modal view")
+            print("\nDismissing modal view")
             self.dismiss(animated: true, completion: nil)
 
         } else {
-            print("Dismissing pushed view")
-            self.navigationController?.popViewController(animated: true)
+            print("\nDismissing pushed view")
+            self.navigationController?.popViewController(animated: false)
         }
     }
 
     @IBAction func unwindThree(_ sender: Any) {
-        print("Unwinding...")
+        print("\nUnwinding...")
         self.performSegue(withIdentifier: "unwindCode", sender: self)
         //unwind(for: UIStoryboardSegue("unwindCode"), towardsViewController: ViewController)
     }
